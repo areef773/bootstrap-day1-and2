@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f4f4;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #333;
+      color: white;
+      padding: 0.8rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      padding: 8px;
+      display: block;
+    }
+
+    .nav-links a:hover {
+      background: #555;
+      border-radius: 4px;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      background: #444;
+      top: 100%;
+      left: 0;
+      min-width: 150px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .dropdown a {
+      padding: 10px;
+    }
+
+    /* Show dropdown on hover (desktop) */
+    .nav-links li:hover .dropdown {
+      display: block;
+    }
+
+    /* Hamburger */
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #333;
+        flex-direction: column;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      /* Disable hover dropdown on mobile */
+      .nav-links li:hover .dropdown {
+        display: none;
+      }
+
+      .dropdown {
+        position: static;
+        display: none;
+      }
+
+      .dropdown.show {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo">MySite</div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+
+      <li>
+        <a href="#" onclick="toggleDropdown(event)">Services ▾</a>
+        <div class="dropdown" id="dropdownMenu">
+          <a href="#">Web Design</a>
+          <a href="https://github.com/areef773/WIKIPEDIA.git">Development</a>
+          <a href="https://github.com/areef773/STUDENT-LEARNING-.git">CEO</a>
+        </div>
+      </li>
+
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    function toggleDropdown(e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        document.getElementById("dropdownMenu").classList.toggle("show");
+      }
+    }
+  </script>
+
+</body>
+</html>
